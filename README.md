@@ -16,10 +16,12 @@ has nothing too special. Just call the Collections.sort and sortNotes in a for l
 
 ! searchNotes()
 
-To achieve the case-insensitive, toLowerCase() is required. The keywords are splited by "or" and stored in an array.
+To achieve the case-insensitive, toLowerCase() is required. 
+The keywords are splited by "or" and stored in an array.
 So all the string in the array will be stored in List<List<String>>
  
-If the keyword is in AND condition, the string will be like "Lab attendance", which will guarantee a space in it.
+If the keyword is in AND condition, the string will be like "Lab attendance", 
+which will guarantee a space in it.
 AND string will be splited with " " in second string list. 
 
  e.g.
