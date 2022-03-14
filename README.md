@@ -22,7 +22,7 @@ So all the string in the array will be stored in List<List<String>>
 
 If the keyword is in AND condition, the string will be like "Lab attendance",
 which will guarantee a space in it.
-AND string will be splited with " " in second string list.
+AND string will be split with " " in second string list.
 
  e.g.
           List --> "java"
