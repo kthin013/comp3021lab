@@ -4,6 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
+
+import com.sun.java_cup.internal.runtime.Scanner;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 

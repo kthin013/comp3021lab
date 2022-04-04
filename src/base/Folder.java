@@ -1,6 +1,6 @@
 package base;
 
-import java.io.Serializable;	
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +30,7 @@ public class Folder implements Comparable<Folder>, Serializable{
 		Collections.sort(this.notes);
 	}
 
-	public List<Note> searchNotes(String keywords) {
+	/*public List<Note> searchNotes(String keywords) {
 		List<Note> resultNote = new ArrayList<Note>();
 		List<String> stringList = new ArrayList<String>();
 		List<List<String>> orList = new ArrayList<List<String>>();
@@ -80,6 +80,51 @@ public class Folder implements Comparable<Folder>, Serializable{
 			if(boolList.contains(true))
 				resultNote.add(n);
 		}
+		return resultNote;
+	}*/
+
+	public List<Note> searchNotes(String keywords) {
+		List<Note> resultNote = new ArrayList<Note>();
+		ArrayList<ArrayList<String>> andList = new ArrayList<ArrayList<String>>();
+
+		String[] splitKeywords = keywords.toLowerCase().split(" ");
+		int  i = 0;
+
+		while(i<splitKeywords.length) {
+			if(splitKeywords[i].equals("or")) {
+				i++;
+				andList.get(andList.size() - 1).add(splitKeywords[i]);
+			} else {
+				ArrayList<String> orList = new ArrayList<String>();
+				orList.add(splitKeywords[i].toLowerCase());
+				andList.add(orList);
+			}
+			i++;
+		}
+
+		for(Note n:notes) {
+			String noteTitle = n.getTitle().toLowerCase();
+			if(n instanceof TextNote)
+				noteTitle +=  ((TextNote)n).content.toLowerCase();
+
+			boolean andFlag = true;
+			for(ArrayList<String> pattern : andList) {
+				boolean orFlag = false;
+				for(String oneKey : pattern) {
+					if(noteTitle.contains(oneKey)) {
+						orFlag  = true;
+						break;
+					}
+				}
+				if(!orFlag) {
+					andFlag = false;
+					break;
+				}
+			}
+			if(andFlag)
+				resultNote.add(n);
+		}
+
 		return resultNote;
 	}
 
