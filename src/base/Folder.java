@@ -168,5 +168,14 @@ public class Folder implements Comparable<Folder>, Serializable{
 	public int compareTo(Folder o) {
 		return this.name.compareTo(o.getName());
 	}
+
+	public boolean removeNote(String title) {
+		Note removeNote = null;
+		for (Note note : notes) {
+			if (note.getTitle().equals(title))
+				removeNote = note;
+		}
+		return notes.remove(removeNote);
+	}
 }
 

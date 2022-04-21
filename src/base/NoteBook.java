@@ -108,4 +108,9 @@ public class NoteBook implements Serializable {
 			return false;
 		}
 	}
+
+	public void addFolder(String folderName) {
+		if(!folderName.isEmpty())
+			this.getFolders().add(new Folder(folderName));
+	}
 }
